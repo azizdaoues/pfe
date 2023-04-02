@@ -1,6 +1,7 @@
 import React from "react";
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
-    
+import { Helmet } from "react-helmet-async";
+
 //core
 import "primereact/resources/primereact.min.css";
 
@@ -45,6 +46,8 @@ const Contacts = () => {
     setDeleteProductDialog(true);
   };
 
+
+  
   const editProduct = (product) => {
     setProductDialog(true);
   };
@@ -125,125 +128,135 @@ const deleteProductDialogFooter = (
     }
   ];
   return (
-    <Box m="20px">
-      <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Users Informations" subtitle="welcome to you users informations" />
-      </Box>
-      <Box
-        m="7px 0 0 0"
-        width="100%"
-        height="70vh"
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            // borderBottom: "none",
-          },
-
-          // "& .name-column--cell": {
-          //   color: colors.redAccent[600],
-          // },
-          //header color
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
-            // borderBottom: "none",
-          },
-          //color body
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
-          },
-
-          //color footer 
-          "& .MuiDataGrid-footerContainer": {
-            //  borderTop: "none",
-            fontSize:'15px',
-            backgroundColor: colors.blueAccent[700],
-          },
+    
 
 
-          // "& .MuiCheckbox-root": {
-          //   color: `${colors.greenAccent[200]} !important`,
-          // },
 
-          
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${colors.grey[100]} !important`,
-
-          },
-
-        }}
-      >
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          components={{ Toolbar: GridToolbar}}
-          componentsProps={{
-            panel: {
-              sx: {
-                '& .MuiButtonBase-root': {
-                  color: colors.grey[100],
-                },
-          
-            
-              },
-
-            
+  <>
+      <Helmet>
+        <title> Form </title>
+        <link rel="canonical" href="https://www.tacobell.com/" />
+</Helmet>
+      <Box m="20px">
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Header title="Users Informations" subtitle="welcome to you users informations" />
+        </Box>
+        <Box
+          m="7px 0 0 0"
+          width="100%"
+          height="70vh"
+          sx={{
+            "& .MuiDataGrid-root": {
+              border: "none",
             },
-          }}
-        />
-      </Box>
-      <Dialog visible={deleteProductDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
-                <div className="confirmation-content">
-                    <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                  
-                        <span>
-                            Are you sure you want to delete 
-                        </span>
-                    
-                </div>
-            </Dialog>
+            "& .MuiDataGrid-cell": {
+              // borderBottom: "none",
+            },
+    
+            // "& .name-column--cell": {
+            //   color: colors.redAccent[600],
+            // },
+            //header color
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: colors.blueAccent[700],
+              // borderBottom: "none",
+            },
+            //color body
+            "& .MuiDataGrid-virtualScroller": {
+              backgroundColor: colors.primary[400],
+            },
+    
+            //color footer 
+            "& .MuiDataGrid-footerContainer": {
+              //  borderTop: "none",
+              fontSize:'15px',
+              backgroundColor: colors.blueAccent[700],
+            },
+    
+    
+            // "& .MuiCheckbox-root": {
+            //   color: `${colors.greenAccent[200]} !important`,
+            // },
+    
             
-            <Dialog visible={productDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="User Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                {/* <img className="product-image block m-auto pb-3" /> */}
-                <div className="field">
-                    <label htmlFor="name" className="font-bold">
-                        First Name 
-                    </label>
-                    <InputText id="  First Name "  required autoFocus  />
+            "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+              color: `${colors.grey[100]} !important`,
+    
+            },
+    
+          }}
+        >
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            components={{ Toolbar: GridToolbar}}
+            componentsProps={{
+              panel: {
+                sx: {
+                  '& .MuiButtonBase-root': {
+                    color: colors.grey[100],
+                  },
+            
+              
+                },
+    
+              
+              },
+            }}
+          />
+        </Box>
+        <Dialog visible={deleteProductDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
+                  <div className="confirmation-content">
+                      <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
                     
-                </div>
-                <div className="field">
-                    <label htmlFor="description" className="font-bold">
-                        Last Name
-                    </label>
-                    <InputText id="Last Name"  required rows={3} cols={20} />
-                </div>
-                <div className="field">
-                    <label htmlFor="description" className="font-bold" >
-                      Email
-                    </label>
-                    <InputText id="Last Name" type={Email} required rows={3} cols={20} />
-                </div>
-
-                <div className="formgrid grid">
-                    <div className="field col">
-                        <label htmlFor="price" className="font-bold">
-                            Phone
-                        </label>
-                        <InputNumber id="price"   mode="currency" currency="USD" locale="en-US" />
-                    </div>
-                    <div className="field col">
-                        <label htmlFor="quantity" className="font-bold">
-                            Adress
-                        </label>
-                        <InputNumber id="quantity"   />
-                    </div>
-                </div>
-            </Dialog>
-            <Toast ref={toast} />
-
-    </Box>
+                          <span>
+                              Are you sure you want to delete 
+                          </span>
+                      
+                  </div>
+              </Dialog>
+              
+              <Dialog visible={productDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="User Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
+                  {/* <img className="product-image block m-auto pb-3" /> */}
+                  <div className="field">
+                      <label htmlFor="name" className="font-bold">
+                          First Name 
+                      </label>
+                      <InputText id="  First Name "  required autoFocus  />
+                      
+                  </div>
+                  <div className="field">
+                      <label htmlFor="description" className="font-bold">
+                          Last Name
+                      </label>
+                      <InputText id="Last Name"  required rows={3} cols={20} />
+                  </div>
+                  <div className="field">
+                      <label htmlFor="description" className="font-bold" >
+                        Email
+                      </label>
+                      <InputText id="Last Name" type={Email} required rows={3} cols={20} />
+                  </div>
+    
+                  <div className="formgrid grid">
+                      <div className="field col">
+                          <label htmlFor="price" className="font-bold">
+                              Phone
+                          </label>
+                          <InputNumber id="price"   mode="currency" currency="USD" locale="en-US" />
+                      </div>
+                      <div className="field col">
+                          <label htmlFor="quantity" className="font-bold">
+                              Adress
+                          </label>
+                          <InputNumber id="quantity"   />
+                      </div>
+                  </div>
+              </Dialog>
+              <Toast ref={toast} />
+    
+      </Box>
+  </>
   );
 };
 

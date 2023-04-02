@@ -9,6 +9,7 @@ import { Dialog } from "primereact/dialog";
 import Header from "../../components/Header";
 import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
+import { Helmet } from "react-helmet-async";
 
 
 const History = () => {
@@ -120,83 +121,90 @@ const History = () => {
 
   
   return (
-    <Box m="20px">
-      <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="History" subtitle="welcome to you History" />
-      </Box>
-      <Box
-        m="7px 0 0 0"
-        height="70vh"
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-          },
-          "& .name-column--cell": {
-            color: colors.greenAccent[300],
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
-          "& .MuiChackbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${colors.grey[100]} !important`,
-          },
-        }}
-      >
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          components={{ Toolbar: GridToolbar }}
-          componentsProps={{
-            panel: {
-              sx: {
-                "& .MuiButtonBase-root": {
-                  color: colors.grey[100],
-                },
-              },
+
+<>
+<Helmet>
+        <title> History </title>
+        <link rel="canonical" href="https://www.tacobell.com/" />
+</Helmet>
+      <Box m="20px">
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Header title="History" subtitle="welcome to you History" />
+        </Box>
+        <Box
+          m="7px 0 0 0"
+          height="70vh"
+          sx={{
+            "& .MuiDataGrid-root": {
+              border: "none",
+            },
+            "& .MuiDataGrid-cell": {
+              borderBottom: "none",
+            },
+            "& .name-column--cell": {
+              color: colors.greenAccent[300],
+            },
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: colors.blueAccent[700],
+              borderBottom: "none",
+            },
+            "& .MuiDataGrid-virtualScroller": {
+              backgroundColor: colors.primary[400],
+            },
+            "& .MuiDataGrid-footerContainer": {
+              borderTop: "none",
+              backgroundColor: colors.blueAccent[700],
+            },
+            "& .MuiCheckbox-root": {
+              color: `${colors.greenAccent[200]} !important`,
+            },
+            "& .MuiChackbox-root": {
+              color: `${colors.greenAccent[200]} !important`,
+            },
+            "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+              color: `${colors.grey[100]} !important`,
             },
           }}
-        />
-      </Box>
-      <Dialog
-        visible={deleteProductDialog}
-        style={{ width: "32rem"}}
-        breakpoints={{ "960px": "75vw", "641px": "90vw" }}
-        header="Confirm"
-        modal
-        footer={deleteProductDialogFooter}
-        onHide={hideDeleteProductDialog}
-        
-      >
-        <div className="confirmation-content">
-          <i
-            className="pi pi-exclamation-triangle mr-3"
-            style={{ fontSize: "2rem" }}
+        >
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            components={{ Toolbar: GridToolbar }}
+            componentsProps={{
+              panel: {
+                sx: {
+                  "& .MuiButtonBase-root": {
+                    color: colors.grey[100],
+                  },
+                },
+              },
+            }}
           />
-
-          <span>Are you sure you want to delete</span>
-        </div>
-      </Dialog>
-
-      <Toast ref={toast} />
-
-    </Box>
+        </Box>
+        <Dialog
+          visible={deleteProductDialog}
+          style={{ width: "32rem"}}
+          breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+          header="Confirm"
+          modal
+          footer={deleteProductDialogFooter}
+          onHide={hideDeleteProductDialog}
+          
+        >
+          <div className="confirmation-content">
+            <i
+              className="pi pi-exclamation-triangle mr-3"
+              style={{ fontSize: "2rem" }}
+            />
+  
+            <span>Are you sure you want to delete</span>
+          </div>
+        </Dialog>
+  
+        <Toast ref={toast} />
+  
+      </Box>
+</>
   );
 };
 
